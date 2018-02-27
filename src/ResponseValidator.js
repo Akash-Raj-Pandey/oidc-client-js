@@ -344,10 +344,11 @@ export default class ResponseValidator {
             return Promise.reject(new Error("No profile loaded from id_token"));
         }
 
-        if (!response.profile.at_hash) {
+      /*  if (!response.profile.at_hash) {
             Log.error("No at_hash in id_token");
             return Promise.reject(new Error("No at_hash in id_token"));
         }
+        */
 
         if (!response.id_token) {
             Log.error("No id_token");
@@ -387,10 +388,12 @@ export default class ResponseValidator {
 
         var left = hash.substr(0, hash.length / 2);
         var left_b64u = this._joseUtil.hexToBase64Url(left);
+        Log.debug("Hash decoded from alg: ",left_b64u);
+        /*
         if (left_b64u !== response.profile.at_hash) {
             Log.error("Failed to validate at_hash", left_b64u, response.profile.at_hash);
             return Promise.reject(new Error("Failed to validate at_hash"));
-        }
+        }*/
 
         return Promise.resolve(response);
     }
